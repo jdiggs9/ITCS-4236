@@ -11,9 +11,9 @@ public class GroupEnemy : BaseEnemy
     public Vector2[] surroundOffset;
     private bool isEngaging = false;
 
-    void Update()
+    void FixedUpdate()
     {
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+        float distanceToPlayer = Vector2.Distance(rb.position, player.position);
 
         if (distanceToPlayer <= engageRange || isAlerted)
         {
@@ -27,12 +27,13 @@ public class GroupEnemy : BaseEnemy
         for (int i = 0; i < groupMembers.Count; i++)
         {
             Transform member = groupMembers[i];
+            Rigidbody2D memberRb = member.GetComponent<Rigidbody2D>();
             Vector2 targetPos;
 
             if (!isEngaging)
             {
                 // Initial formation
-                targetPos = (Vector2)transform.position + formationOffset[i];
+                targetPos = (Vector2)rb.position + formationOffset[i];
             }
             else
             {
@@ -40,8 +41,8 @@ public class GroupEnemy : BaseEnemy
                 targetPos = (Vector2)player.position + surroundOffset[i];
             }
 
-            Vector2 direction = (targetPos - (Vector2)member.position).normalized;
-            member.position += (Vector3)(direction * moveSpeed * Time.deltaTime);
+            Vector2 direction = (targetPos - (Vector2)memberRb.position).normalized;
+            memberRb.MovePosition(memberRb.position + direction * moveSpeed * Time.fixedDeltaTime);
         }
     }
 }

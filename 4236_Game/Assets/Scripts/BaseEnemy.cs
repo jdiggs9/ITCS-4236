@@ -3,26 +3,32 @@ using UnityEngine;
 public class BaseEnemy : MonoBehaviour
 {
     public Transform player;
+    public Rigidbody2D rb;
     public float moveSpeed = 3f;
     public float detectionRange = 7;
     public bool isAlerted = false;
+    public float radiusOfSatisfaction = 1f;
 
     [HideInInspector] public bool inGroup = false;
 
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        // If the enemy is in a group, it does not move independently
         if (inGroup) return;
 
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        float distanceToPlayer = Vector3.Distance(rb.position, player.position);
 
         if (distanceToPlayer <= detectionRange || isAlerted) {
-            Vector2 direction = (player.position - transform.position).normalized;
-            transform.position += (Vector3)(direction * moveSpeed * Time.deltaTime);
+            if (distanceToPlayer > radiusOfSatisfaction) {
+                Vector2 direction = (player.position - transform.position).normalized;
+                rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
+            }
+        } else {
+            rb.linearVelocity = Vector2.zero;
         }
     }
 }

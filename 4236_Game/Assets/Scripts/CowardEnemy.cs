@@ -7,16 +7,22 @@ public class CowardEnemy : BaseEnemy
     public LayerMask enemyLayer;
 
     void Update() {
-        FleeFromPlayer();
         AlertEnemies();
     }
 
+    void FixedUpdate() {
+        inGroup = true;
+        FleeFromPlayer();
+    }
+
     void FleeFromPlayer() {
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+        float distanceToPlayer = Vector2.Distance(rb.position, player.position);
 
         if (distanceToPlayer <= fleeRange) {
-            Vector2 direction = (transform.position - player.position).normalized;
-            transform.position += (Vector3)(direction * moveSpeed * Time.deltaTime);
+            Vector2 direction = (rb.position - (Vector2)player.position).normalized;
+            rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
+        } else {
+            rb.linearVelocity = Vector2.zero;
         }
     }
 

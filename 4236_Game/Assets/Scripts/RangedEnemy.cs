@@ -5,21 +5,22 @@ public class RangedEnemy : BaseEnemy
     public float attackRange = 5f;
     public float buffer = 0.2f;
 
-    void Update() {
+    void FixedUpdate() {
         MoveEnemy();
     }
 
     void MoveEnemy() {
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+        float distanceToPlayer = Vector2.Distance(rb.position, player.position);
+        Vector2 direction;
 
         if ((distanceToPlayer > attackRange + buffer && distanceToPlayer <= detectionRange) || (isAlerted && distanceToPlayer > attackRange + buffer)) {
-            Vector2 direction = (player.position - transform.position).normalized;
-            transform.position += (Vector3)(direction * moveSpeed * Time.deltaTime);
+            direction = ((Vector2)player.position - rb.position).normalized;
+            rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
         } else if (distanceToPlayer < attackRange - buffer) {
-            Vector2 direction = (transform.position - player.position).normalized;
-            transform.position += (Vector3)(direction * moveSpeed * Time.deltaTime);
+            direction = (rb.position - (Vector2)player.position).normalized;
+            rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
         } else {
-
+            rb.linearVelocity = Vector2.zero;
         }
     }
 }
