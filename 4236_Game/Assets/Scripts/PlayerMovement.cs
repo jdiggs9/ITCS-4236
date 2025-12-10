@@ -13,6 +13,8 @@ public class Player_Movement : MonoBehaviour
     private float sprint;
     private Vector2 moveDirection;
     public SpriteRenderer sr;
+    private float horizontal;
+    private float vertical;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
@@ -27,12 +29,21 @@ public class Player_Movement : MonoBehaviour
     }
 
     private void inputControl() {
+
+        //horizontal = Input.GetAxisRaw("Horizontal");
+        //vertical = Input.GetAxisRaw("Vertical");
+
+        //playerRB.linearVelocity = new Vector2(horizontal * moveSpeed * Time.deltaTime, vertical * moveSpeed * Time.deltaTime);
+
         //input
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) {
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
             sprint = 2f;
-        } else {
+        }
+        else
+        {
             sprint = 1f;
         }
         //player movement
@@ -53,6 +64,6 @@ public class Player_Movement : MonoBehaviour
         //    cam.transform.position = new Vector3(transform.position.x, transform.position.y, -10f);
         //}
 
-        
+
     }
 }
