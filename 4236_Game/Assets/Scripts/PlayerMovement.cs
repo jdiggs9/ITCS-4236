@@ -12,6 +12,7 @@ public class Player_Movement : MonoBehaviour
 
     private float sprint;
     private Vector2 moveDirection;
+    public SpriteRenderer sr;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
@@ -20,7 +21,7 @@ public class Player_Movement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update() {
+    void FixedUpdate() {
         inputControl();
         //cam.transform.position = new Vector3(transform.position.x, transform.position.y, -10f);
     }
@@ -37,6 +38,14 @@ public class Player_Movement : MonoBehaviour
         //player movement
         moveDirection = new Vector2(moveX, moveY).normalized;
         playerRB.linearVelocity = moveDirection * 100f * moveSpeed * Time.deltaTime * sprint;
+
+        if (moveX > 0)
+        {
+            sr.flipX = false;
+        } else if (moveX < 0)
+        {
+            sr.flipX = true;
+        }
 
         //cam movement
         //camRB.linearVelocity = moveDirection * 100f * moveSpeed * Time.deltaTime * sprint;

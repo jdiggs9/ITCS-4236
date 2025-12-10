@@ -8,6 +8,8 @@ public class BaseEnemy : MonoBehaviour
     public float detectionRange = 7;
     public bool isAlerted = false;
     public float radiusOfSatisfaction = 1f;
+    public bool isFlipped = false;
+    public LayerMask ground;
 
     [HideInInspector] public bool inGroup = false;
 
@@ -29,6 +31,23 @@ public class BaseEnemy : MonoBehaviour
             }
         } else {
             rb.linearVelocity = Vector2.zero;
+        }
+        LookAtPlayer();
+    }
+
+    private void LookAtPlayer()
+    {
+        Vector3 flipped = transform.localScale;
+        flipped.z *= -1f;
+
+        if (transform.position.x > player.position.x && isFlipped) {
+            transform.localScale = flipped;
+            transform.Rotate(0f, 180f, 0f);
+            isFlipped = false;
+        } else if (transform.position.x < player.position.x && !isFlipped) {
+            transform.localScale = flipped;
+            transform.Rotate(0f, 180f, 0f);
+            isFlipped = true;
         }
     }
 }

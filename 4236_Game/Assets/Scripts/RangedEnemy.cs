@@ -4,6 +4,7 @@ public class RangedEnemy : BaseEnemy
 {
     public float attackRange = 5f;
     public float buffer = 0.2f;
+    private BaseEnemy baseEnemy;
 
     void FixedUpdate() {
         MoveEnemy();
@@ -21,6 +22,23 @@ public class RangedEnemy : BaseEnemy
             rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
         } else {
             rb.linearVelocity = Vector2.zero;
+        }
+        LookAtPlayer();
+    }
+
+    private void LookAtPlayer()
+    {
+        Vector3 flipped = transform.localScale;
+        flipped.z *= -1f;
+
+        if (transform.position.x > player.position.x && isFlipped) {
+            transform.localScale = flipped;
+            transform.Rotate(0f, 180f, 0f);
+            isFlipped = false;
+        } else if (transform.position.x < player.position.x && !isFlipped) {
+            transform.localScale = flipped;
+            transform.Rotate(0f, 180f, 0f);
+            isFlipped = true;
         }
     }
 }
