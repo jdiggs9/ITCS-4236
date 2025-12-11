@@ -10,12 +10,20 @@ public class BaseEnemy : MonoBehaviour
     public float radiusOfSatisfaction = 1f;
     public bool isFlipped = false;
     public LayerMask ground;
+    private HUD hud;
+    public float damageCooldown = 1f;
+    private float lastDamageTime = 0f;
+    public int maxHealth = 3;
+    public int currentHealth;
+    public bool destroyOnDamage = false;
 
     [HideInInspector] public bool inGroup = false;
 
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
+        hud = FindObjectOfType<HUD>();
+        currentHealth = maxHealth;
     }
 
     void FixedUpdate()
@@ -49,5 +57,30 @@ public class BaseEnemy : MonoBehaviour
             transform.Rotate(0f, 180f, 0f);
             isFlipped = true;
         }
+    }
+
+    void OnTriggerStay2D(Collider2D other) {
+        if (other.CompareTag("Player")) {
+            if (Time.time - lastDamageTime >= damageCooldown) {
+                hud.Damaged();
+                lastDamageTime = Time.time;
+
+                if (destroyOnDamage)
+                {
+                    Destroy(gameObject);
+                }
+            }
+        }
+    }
+
+    public void TakeDamage(int damage) {
+        currentHealth -= damage;
+        if (currentHealth <= 0) {
+            Die();
+        }
+    }
+
+    private void Die() {
+        Destroy(gameObject);
     }
 }

@@ -1,6 +1,7 @@
 using System.Threading;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections;
 
 public class Player_Movement : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class Player_Movement : MonoBehaviour
     //public GameObject cam;
     private Rigidbody2D playerRB;
     //public Rigidbody2D camRB;
+    public GameObject meleeHitbox;
+    public int meleeDamage = 1;
+    public float attackDuration = 0.2f;
 
     private float sprint;
     private Vector2 moveDirection;
@@ -26,6 +30,15 @@ public class Player_Movement : MonoBehaviour
     void FixedUpdate() {
         inputControl();
         //cam.transform.position = new Vector3(transform.position.x, transform.position.y, -10f);
+    }
+
+    void Update()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            MeleeAttack();
+            Debug.Log("Attack");
+        }
     }
 
     private void inputControl() {
@@ -64,6 +77,15 @@ public class Player_Movement : MonoBehaviour
         //    cam.transform.position = new Vector3(transform.position.x, transform.position.y, -10f);
         //}
 
+    }
 
+    public void MeleeAttack() {
+        StartCoroutine(AttackCoroutine());
+    }
+
+    private IEnumerator AttackCoroutine() {
+        meleeHitbox.SetActive(true);
+        yield return new WaitForSeconds(attackDuration);
+        meleeHitbox.SetActive(false);
     }
 }
