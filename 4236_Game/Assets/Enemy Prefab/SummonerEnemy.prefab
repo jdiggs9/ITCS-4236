@@ -236,6 +236,10 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 0
+  damageCooldown: 1
+  maxHealth: 3
+  currentHealth: 0
+  destroyOnDamage: 0
   inGroup: 0
   attackRange: 5
   buffer: 0.2
@@ -254,3 +258,5 @@ MonoBehaviour:
   enemyPrefab: {fileID: 2029088266923213685, guid: f11d6c06180ac4f94ae20e48f2f3e2d6, type: 3}
   minimumSpawnTime: 3
   maximumSpawnTime: 9
+  player: {fileID: 0}
+  detectionRange: 5

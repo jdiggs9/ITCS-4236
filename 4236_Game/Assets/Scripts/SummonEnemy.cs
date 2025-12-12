@@ -1,4 +1,7 @@
+using System.Numerics;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
+using Quaternion = UnityEngine.Quaternion;
 
 public class SummonEnemy : MonoBehaviour
 {
@@ -6,15 +9,27 @@ public class SummonEnemy : MonoBehaviour
     [SerializeField] private float minimumSpawnTime;
     [SerializeField] private float maximumSpawnTime;
     private float spawnTimer;
+    public Transform player;
+    public float detectionRange;
+
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
 
     void Update()
     {
-        spawnTimer -= Time.deltaTime;
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        if (spawnTimer <= 0f)
+        if (distanceToPlayer <= detectionRange)
         {
-            SpawnEnemy();
-            SetSpawnTimer();
+            spawnTimer -= Time.deltaTime;
+
+            if (spawnTimer <= 0f)
+            {
+                SpawnEnemy();
+                SetSpawnTimer();
+            }
         }
     }
 

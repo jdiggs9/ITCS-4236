@@ -120,6 +120,7 @@ MonoBehaviour:
   damageCooldown: 1
   maxHealth: 3
   currentHealth: 0
+  destroyOnDamage: 0
   inGroup: 0
   attackRange: 5
   buffer: 0.2
@@ -257,3 +258,5 @@ MonoBehaviour:
   enemyPrefab: {fileID: 2461423322211749939, guid: b5ff6ca392c5c48c4bb285cd1902c34d, type: 3}
   minimumSpawnTime: 2
   maximumSpawnTime: 7
+  player: {fileID: 0}
+  detectionRange: 5
