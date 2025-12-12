@@ -17,7 +17,7 @@ public class RoomSpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
         temp = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplate>();
-        Invoke("SpawnRoom", 1f);
+        Invoke("SpawnRoom", .3f);
     }
 
     // Update is called once per frame
