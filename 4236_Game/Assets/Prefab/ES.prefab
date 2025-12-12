@@ -1735,7 +1735,7 @@ GameObject:
   - component: {fileID: 6633232320930699455}
   - component: {fileID: 7460040205764647981}
   - component: {fileID: 8739459469731463331}
-  - component: {fileID: 6487220112448936331}
+  - component: {fileID: 2540601136105357544}
   m_Layer: 0
   m_Name: Doors
   m_TagString: Untagged
@@ -2084,7 +2084,7 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
---- !u!114 &6487220112448936331
+--- !u!114 &2540601136105357544
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2100,9 +2100,23 @@ MonoBehaviour:
   doorClosedRight: {fileID: 11400000, guid: 20a20c5cb8d2b4f34a1f612c88f4a1c4, type: 2}
   doorOpenLeft: {fileID: 11400000, guid: 0603f1640850e49949a6edda3c68318a, type: 2}
   doorOpenRight: {fileID: 11400000, guid: 22eb8839c974f4e04bdc4f08f2d7b593, type: 2}
+  rightDoorClosedTop: {fileID: 11400000, guid: 2d1844f521f2441f1bb4d47d7c555dd3, type: 2}
+  rightDoorClosedBottom: {fileID: 11400000, guid: 0603f1640850e49949a6edda3c68318a, type: 2}
+  leftDoorClosedTop: {fileID: 11400000, guid: e927b5164dd0c4ece9bae274302c9bcf, type: 2}
+  leftDoorClosedBottom: {fileID: 11400000, guid: 22eb8839c974f4e04bdc4f08f2d7b593, type: 2}
   tilemap: {fileID: 4511311832816477340}
-  leftDoorPos: {x: -1, y: -5, z: 0}
-  rightDoorPos: {x: 0, y: -5, z: 0}
+  topLeftDoorPos: {x: -1, y: 4, z: 0}
+  topRightDoorPos: {x: 0, y: 4, z: 0}
+  northDoor: 0
+  bottomLeftDoorPos: {x: -1, y: -5, z: 0}
+  bottomRightDoorPos: {x: 0, y: -5, z: 0}
+  southDoor: 1
+  leftTopDoorPos: {x: -9, y: -1, z: 0}
+  leftBottomDoorPos: {x: -9, y: 0, z: 0}
+  westDoor: 0
+  rightTopDoorPos: {x: 8, y: -1, z: 0}
+  rightBottomDoorPos: {x: 8, y: 0, z: 0}
+  eastDoor: 1
   isLocked: 0
 --- !u!1 &3355527424141330079
 GameObject:

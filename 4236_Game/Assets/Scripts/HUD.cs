@@ -60,21 +60,21 @@ public class HUD : MonoBehaviour
 
     private void UpdateCam()
     {
-        if (player.transform.position.y > 4 + transform.position.y)
+        if (player.transform.position.y > 5 + transform.position.y)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z);
         }
-        else if (player.transform.position.y < transform.position.y - 4)
+        else if (player.transform.position.y < transform.position.y - 5)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y - 10, transform.position.z);
         }
-        else if (player.transform.position.x > 8 + transform.position.x)
+        else if (player.transform.position.x > 9 + transform.position.x)
         {
-            transform.position = new Vector3(transform.position.x + 16, transform.position.y, transform.position.z);
+            transform.position = new Vector3(transform.position.x + 18, transform.position.y, transform.position.z);
         }
-        else if (player.transform.position.x < transform.position.x - 8)
+        else if (player.transform.position.x < transform.position.x - 9)
         {
-            transform.position = new Vector3(transform.position.x - 8, transform.position.y, transform.position.z);
+            transform.position = new Vector3(transform.position.x - 18, transform.position.y, transform.position.z);
         }
     }
 
