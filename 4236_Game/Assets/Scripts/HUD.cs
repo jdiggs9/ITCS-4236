@@ -21,7 +21,7 @@ public class HUD : MonoBehaviour
 
     //public GameObject deathMenu;
     public GameObject player;
-    public TextMeshProUGUI coinDisplay;
+    //public TextMeshProUGUI coinDisplay;
     //private bool isPaused;
     public int coins = 0;
 
@@ -55,10 +55,32 @@ public class HUD : MonoBehaviour
         //    }
         //}
         UpdateDisplay();
+        UpdateCam();
     }
 
-    private void UpdateDisplay() {
-        coinDisplay.text = coins.ToString();
+    private void UpdateCam()
+    {
+        if (player.transform.position.y > 4 + transform.position.y)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z);
+        }
+        else if (player.transform.position.y < transform.position.y - 4)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y - 10, transform.position.z);
+        }
+        else if (player.transform.position.x > 8 + transform.position.x)
+        {
+            transform.position = new Vector3(transform.position.x + 16, transform.position.y, transform.position.z);
+        }
+        else if (player.transform.position.x < transform.position.x - 8)
+        {
+            transform.position = new Vector3(transform.position.x - 8, transform.position.y, transform.position.z);
+        }
+    }
+
+    private void UpdateDisplay()
+    {
+        //coinDisplay.text = coins.ToString();
     }
 
     public void Damaged() {
