@@ -16,6 +16,8 @@ public class BaseEnemy : MonoBehaviour
     public int maxHealth = 3;
     public int currentHealth;
     public bool destroyOnDamage = false;
+    public bool isBoss = false;
+    public MainM mainM;
 
     [HideInInspector] public bool inGroup = false;
 
@@ -23,6 +25,7 @@ public class BaseEnemy : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
         hud = FindObjectOfType<HUD>();
+        mainM = FindObjectOfType<MainM>();
         currentHealth = maxHealth;
     }
 
@@ -62,7 +65,13 @@ public class BaseEnemy : MonoBehaviour
     void OnTriggerStay2D(Collider2D other) {
         if (other.CompareTag("Player")) {
             if (Time.time - lastDamageTime >= damageCooldown) {
-                hud.Damaged();
+                if (isBoss)
+                {
+                    hud.Damaged();
+                    hud.Damaged();
+                } else {
+                    hud.Damaged();
+                }
                 lastDamageTime = Time.time;
 
                 if (destroyOnDamage)
@@ -81,6 +90,13 @@ public class BaseEnemy : MonoBehaviour
     }
 
     private void Die() {
-        Destroy(gameObject);
+        if (isBoss == true) {
+            mainM.Victory();
+            Destroy(gameObject);
+        } else
+        {
+            Destroy(gameObject);
+        }
+        
     }
 }

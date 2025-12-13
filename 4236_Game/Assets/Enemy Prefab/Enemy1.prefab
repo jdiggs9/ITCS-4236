@@ -231,11 +231,15 @@ MonoBehaviour:
   moveSpeed: 3
   detectionRange: 7
   isAlerted: 0
-  radiusOfSatisfaction: 1
+  radiusOfSatisfaction: 0.8
   isFlipped: 0
   ground:
     serializedVersion: 2
     m_Bits: 0
+  damageCooldown: 1
+  maxHealth: 3
+  currentHealth: 0
+  destroyOnDamage: 0
   inGroup: 0
 --- !u!95 &-5942472650844025795
 Animator:

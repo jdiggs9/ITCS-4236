@@ -10,15 +10,16 @@ public class Player_Movement : MonoBehaviour
     //public GameObject cam;
     private Rigidbody2D playerRB;
     //public Rigidbody2D camRB;
-    public GameObject meleeHitbox;
-    public int meleeDamage = 1;
-    public float attackDuration = 0.2f;
+    //public GameObject meleeHitbox;
+    //public int meleeDamage = 1;
+    //public float attackDuration = 0.2f;
 
     private float sprint;
     private Vector2 moveDirection;
     public SpriteRenderer sr;
     private float horizontal;
     private float vertical;
+    public Transform attackOrigin;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
@@ -36,7 +37,7 @@ public class Player_Movement : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            MeleeAttack();
+            //MeleeAttack();
             Debug.Log("Attack");
         }
     }
@@ -66,9 +67,11 @@ public class Player_Movement : MonoBehaviour
         if (moveX > 0)
         {
             sr.flipX = false;
+            attackOrigin.localPosition = new Vector3(Mathf.Abs(attackOrigin.localPosition.x), attackOrigin.localPosition.y);
         } else if (moveX < 0)
         {
             sr.flipX = true;
+            attackOrigin.localPosition = new Vector3(-Mathf.Abs(attackOrigin.localPosition.x), attackOrigin.localPosition.y);
         }
 
         //cam movement
@@ -79,7 +82,7 @@ public class Player_Movement : MonoBehaviour
 
     }
 
-    public void MeleeAttack() {
+    /*public void MeleeAttack() {
         StartCoroutine(AttackCoroutine());
     }
 
@@ -87,5 +90,5 @@ public class Player_Movement : MonoBehaviour
         meleeHitbox.SetActive(true);
         yield return new WaitForSeconds(attackDuration);
         meleeHitbox.SetActive(false);
-    }
+    }*/
 }

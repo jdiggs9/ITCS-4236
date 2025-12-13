@@ -230,7 +230,7 @@ MonoBehaviour:
   moveSpeed: 3
   detectionRange: 7
   isAlerted: 0
-  radiusOfSatisfaction: 1
+  radiusOfSatisfaction: 0.8
   isFlipped: 0
   ground:
     serializedVersion: 2
@@ -238,4 +238,5 @@ MonoBehaviour:
   damageCooldown: 1
   maxHealth: 3
   currentHealth: 0
+  destroyOnDamage: 0
   inGroup: 0

@@ -1,3 +1,4 @@
+using Microsoft.Win32.SafeHandles;
 using UnityEngine;
 
 public class Items : MonoBehaviour
@@ -15,7 +16,7 @@ public class Items : MonoBehaviour
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
-        
+        hud = FindObjectOfType<HUD>().gameObject;
     }
 
     // Update is called once per frame

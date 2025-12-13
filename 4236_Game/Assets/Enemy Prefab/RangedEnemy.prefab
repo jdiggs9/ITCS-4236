@@ -257,6 +257,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SummonEnemy
   enemyPrefab: {fileID: 2461423322211749939, guid: b5ff6ca392c5c48c4bb285cd1902c34d, type: 3}
   minimumSpawnTime: 2
-  maximumSpawnTime: 7
+  maximumSpawnTime: 6
   player: {fileID: 0}
   detectionRange: 5
