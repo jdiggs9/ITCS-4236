@@ -24,6 +24,7 @@ public class HUD : MonoBehaviour
     //public TextMeshProUGUI coinDisplay;
     //private bool isPaused;
     public int coins = 0;
+    public menuManager menuManager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
@@ -39,6 +40,7 @@ public class HUD : MonoBehaviour
         //isPaused = false;
         UpdateDisplay();
         //DontDestroyOnLoad(this.gameObject);
+        menuManager = FindObjectOfType<menuManager>();
     }
 
     // Update is called once per frame
@@ -201,6 +203,7 @@ public class HUD : MonoBehaviour
     private void Death() {
         player.SetActive(false);
         //deathMenu.SetActive(true);
+        menuManager.LoadDeathScene();
     }
     public bool IsFullHP() {
         int temp = FindLastNull() - 1;
